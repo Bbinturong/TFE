@@ -1,0 +1,157 @@
+html, body {
+
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #FDFDFD;
+}
+
+body {
+
+	font-family: 'bariol', sans-serif;
+	font-size: 16px;
+}
+
+/* FONT */
+@font-face{ 
+	font-family: 'bariol';
+	src: url('../font/bariol.ttf') format('truetype');
+}
+
+
+/* ----- HEADER ----- */
+
+.header {
+
+	height: 48px; /* Change with line-height */
+	background-color: #8781bd;
+	margin: 0;
+
+	position: relative;
+}
+
+.header .header-btn {
+
+	display: block;
+	padding: 13px; 
+
+	position: absolute;
+	z-index: 99999;
+
+	width: 22px;
+	height: 22px;
+}
+.header .btn-param {
+
+	left: 0;
+	top: 0;
+}
+.header .btn-profile {
+
+	right: 0;
+	top: 0;
+}
+
+
+.header span {
+
+	width: 100%;
+	height: 100%;
+	display: block;
+	background-size: cover;
+}
+
+.header .param {
+
+	background-image: url('../img/param-icon.svg');
+}
+.header .profile {
+
+	background-image: url('../img/profile-icon.svg');
+}
+
+.header h1 {
+
+	color: #FFF;
+	font-size: .9em;
+	margin: 0;
+	text-align: center;
+
+	line-height: 48px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: lighter;
+}
+
+/* ----- END HEADER ----- */
+
+/* ----- MAIN ----- */
+
+main {
+
+	position: absolute;
+	top: 50%;
+   	margin-top: -40vw;/* half of #content height*/
+   	
+   	width: 100%;
+}
+
+.main-avatar {
+
+	display: block;
+	width: 80vw;
+	max-width: 500px;
+	height: 80vw;
+	max-height: 500px;
+	margin: 0 auto;
+
+	background-color: blue;
+	border-radius: 50%;
+}
+
+footer {
+
+	width: 100%;
+}
+
+#main-btn {
+
+	display: block;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background-size: 60px 60px;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	position: absolute;
+	z-index: 99999;
+	bottom: 30px;
+	right: 30px;
+}
+
+#main-btn svg {
+
+	margin: 0 auto;
+    display: block;
+    margin-top: 10px;
+}
+
+#main-btn.active {
+
+	background-color: #8781bd;
+}
+#main-btn.active svg .notif-icon_path {
+
+	stroke: #FFF;
+}
+
+#main-btn.no-active {
+
+	background-color: transparent;
+	border: #8781bd 1px solid;
+}
+#main-btn.no-active svg .notif-icon_path {
+
+	stroke: #8781bd;
+}

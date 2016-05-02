@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title> - Spiro - </title>
+	<meta charset="UTF-8" />
+
+	<!-- META -->
+	<meta name="description" content="Spiro - Find someone and talk"/>
+    <meta name="keywords" content="spiro, talk, meet, meeting, talking, app, mobile, mobile app, ux, rencontre, spirograph, parler, discuter"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mattelet Bruno">
+
+	<meta property="og:title" content="Sprio"/>
+	<meta property="og:description" content="Find someone and talk"/>
+	<meta property="og:email" content="bruno.mattelet@gmail.com"/>
+	<meta property="og:image" content="assets/img/favicon.png"/>
+
+	<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+
+	<!-- JQUERY -->
+    <script type="text/javascript" src="assets/js/jquery-1.11.3.js"></script>
+    <!-- BONSAI -->
+    <script type="text/javascript" src="assets/js/bonsai-0.4.1.min.js"></script>
+    <!-- VELOCITY -->
+    <script type="text/javascript" src="assets/js/velocity.min.js"></script>
+	<!-- RANDOMCOLOR -->
+	<script type="text/javascript" src="assets/js/randomcolor.js"></script>	
+	<!-- SHAKE -->
+	<script type="text/javascript" src="assets/js/shake.js"></script>
+
+	<!-- SPIROGRAPH -->
+    <script type="text/javascript" src="assets/js/spirograph.js"></script>
+    
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+
+	<header id="header" class="header main_header">
+
+		<a class='header-btn btn-param' href="param.html" title="Parameter">
+		<span class='param-icon'></span>
+		</a>
+
+		<h1 class='title header-title'> Bruno </h1>
+
+		<a id='open-history' class='header-btn btn-history' href="#" title="History">
+		<span class='history-icon'></span>	
+		</a>
+		
+	</header><!-- /header -->
+
+	<main>
+
+        <!--div class='onboarding'>
+            <h2> Bienvenu sur Spiro</h2>
+            <h3> C'est quoi ton nom ?</h3>
+
+                
+            <input id='userNameInput' type="text" name="User-name" placeholder="Bernard">
+
+        <div id='main-btn' class='active notif-open'>
+
+        <svg class='svg' version="1.1" id="notif-icon"  x="0px" y="0px"  width="60px" height="60px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
+        <g id='svg-notif'>
+            <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-miterlimit="10" points="19.25,36.5 
+        30.749,25 19.25,13.5    "/>
+        </g>
+        </svg>
+
+    </div>
+            
+        </div-->
+
+		<div class='home'>
+		<canvas width='300px' height="300px" id="main-spiro" class='main-avatar'>
+			
+		</canvas>
+
+		<p class='shake-baseline'> Secouer pour lancer un appel</p>
+
+		<div id='history' class='history'>
+
+		<a id='close-history' class='header-btn btn-retour' href="#" >
+		<span class='close-icon'></span>
+		</a>
+
+		<h1 class='header-title'> Historique </h1>
+
+		<div class='history-list'>
+		<p class='history-list-proposition'> Appel avec <b>Antoine</b> </br> de <b>crèpes salées</b></p>
+		<p class='history-list-date'> 3h</p>
+		</div>
+		<div class='history-list'>
+		<p class='history-list-proposition'> Appel avec <b>Marguerite</b> </br> de <b>semences artificielles</b></p>
+		<p class='history-list-date'> 1j</p>
+		</div>
+		<div class='history-list'>
+		<p class='history-list-proposition'> Appel avec <b>Antoine</b> </br> de <b>crèpes salées</b></p>
+		<p class='history-list-date'> 3h</p>
+		</div>
+		<div class='history-list'>
+		<p class='history-list-proposition'> Appel avec <b>Antoine</b> </br> de <b>crèpes salées</b></p>
+		<p class='history-list-date'> 3h</p>
+		</div>
+			
+		</div>
+
+	<h2 class='notif-proposition'> <b>Antoine</b> veut parler </br> de <b>crèpes salées</b></h2>	
+
+	<div id='main-btn' class='active notif-open'>
+
+		<svg class='svg' version="1.1" id="notif-icon"  x="0px" y="0px"	 width="60px" height="60px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
+		<g id='svg-notif'>
+			<path id='path-1' class='notif-icon_path' fill="none" stroke-width="1" stroke='#FFF' stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M19.661,46.902l16.97-25.582C37.098,20.597,36.79,20,35.943,20h-8.008c-0.844,0-1.422-0.517-1.283-1.376l2.752-17.527"/>
+			<path id='path-2' class='notif-icon_path' fill="none" stroke-width="1" stroke='#FFF'stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M29.404,1L11.411,25.697c-0.514,0.693-0.24,1.33,0.604,1.33h8.861c0.844,0,1.482,0.466,1.418,1.336L19.661,47"/>
+		</g>
+		</svg>
+
+	</div>		
+
+	<ul id='notif-list' class='notif-list'>
+		<li class='notif-users_container'>
+		<canvas id='notif-users1' class='notif-users'></canvas>
+		<div class='valid-user'></div>
+		</li>
+		<li class='notif-users_container'>
+		<canvas id='notif-users2' class='notif-users'></canvas>
+		<div class='valid-user'></div>
+		</li>
+		<li class='notif-users_container'>
+		<canvas id='notif-users3' class='notif-users'></canvas>
+		<div class='valid-user'></div>
+		</li>
+	</ul>  
+
+    </div>
+
+	</main>
+
+<script type="text/javascript">
+	
+    $(document).ready(function(){
+
+
+
+    // Définis les spirographs
+    $('#main-spiro').each(function(){
+        $(this).spiro({
+          color : randomColor(),
+          stroke : 2,
+          size : 300,
+          speed : 1
+        })
+     })
+    $('#notif-users1').each(function(){
+        $(this).spiro({
+          color : randomColor(),
+          stroke : 1,
+          size : 80,
+          speed : 2
+        })
+     })
+    $('#notif-users2').each(function(){
+        $(this).spiro({
+          color : randomColor(),
+          stroke : 1,
+          size : 80,
+          speed : 2
+        })
+     })
+    $('#notif-users3').each(function(){
+        $(this).spiro({
+          color : randomColor(),
+          stroke : 1,
+          size : 80,
+          speed : 2
+        })
+     })
+
+
+
+    	// -----
+    	// CREATE A WIDTH FOR THE ul BY ALL THE li 
+    	// -----
+
+    	var widthNotif = $(".notif-users_container").outerWidth(true);
+    	//console.log(widthNotif);
+    	var numberNotifUsers = $(".notif-list").children().length;
+    	var totalWidthNotif = widthNotif * numberNotifUsers;
+    	//console.log(totalWidthNotif);
+    	//console.log(numberNotifUsers);
+		$( ".notif-list" ).css( "width", totalWidthNotif );
+
+
+
+
+        // -----
+        // OPEN CLOSE HISTORY 
+        // -----
+        $("#open-history, #close-history").click(function(){
+
+        $( "#history" ).toggleClass( "history-open" );
+        });
+
+
+        
+
+
+        // ------
+        // OPEN NOTIFICATION
+        // ------
+
+        $("#main-btn").click(function(){
+
+        	var active = $( "#main-btn" ).hasClass( "notif-open" );
+
+        	if (active) {
+
+        		$( "#main-btn" ).toggleClass( "animation-notif_in" );
+        		$( "#notif-icon" ).css( "margin", 0 );
+        		$( "#path-1" ).attr("d", "M13,35l11-11l0,0l0,0l0,0l11-11");
+        		$( "#path-2" ).attr("d", "M13,13l11,11l0,0l0,0l0,0l11,11");
+
+        		$( "#main-btn" ).toggleClass( "notif-open" );
+
+        		$( "#notif-list" ).toggleClass( "notif-list-open" );
+
+        		$( ".main-avatar" ).toggleClass( "avatar-list-open" );
+
+        		$( ".shake-baseline" ).css( "opacity", '0' );
+        	} else {
+
+        		$( "#main-btn" ).toggleClass( "animation-notif_in" );
+        		$( "#notif-icon" ).css( "margin", 10 );
+        		$( "#path-1" ).attr("d", "M19.661,46.902l16.97-25.582C37.098,20.597,36.79,20,35.943,20h-8.008c-0.844,0-1.422-0.517-1.283-1.376l2.752-17.527");
+        		$( "#path-2" ).attr("d", "M29.404,1L11.411,25.697c-0.514,0.693-0.24,1.33,0.604,1.33h8.861c0.844,0,1.482,0.466,1.418,1.336L19.661,47");
+
+        		$( "#main-btn" ).toggleClass( "notif-open" );
+
+        		$( "#notif-list" ).toggleClass( "notif-list-open" );
+
+        		$( ".main-avatar" ).toggleClass( "avatar-list-open" );
+
+				$( ".notif-users_container" ).removeClass( "selected" );
+
+        		$( ".shake-baseline" ).css( "opacity", '1' );
+        		$( ".notif-proposition" ).css( "opacity", '0' );
+        	}        
+
+        });
+
+
+        // -----
+        // SELECT THE USERS SPIRO	
+        // -----
+
+		$(".notif-users_container").click(function(){
+
+		$( ".notif-users_container" ).removeClass( "selected" );
+        $( this ).toggleClass( "selected" );
+
+        // CHANGE OPACITY OF PROPOSITION IF SELECTED IS A CLASS
+        if ($( ".notif-users_container" ).hasClass( "selected" )) {
+			
+			$( ".notif-proposition" ).css( "opacity", '1' );
+        } else {
+
+        	$( ".notif-proposition" ).css( "opacity", '0' );
+        }
+
+        });
+
+
+    });
+    // DOCUMENT READY END 
+
+
+    /* SHAKE JS */
+
+    var myShakeEvent = new Shake({
+    	threshold: 10, // optional shake strength threshold
+    	timeout: 100 // optional, determines the frequency of event generation
+	});
+
+	myShakeEvent.start();
+
+	window.addEventListener('shake', shakeEventDidOccur, false);
+	
+		//function to call when shake occurs
+		function shakeEventDidOccur () {
+		
+		alert('SHAKING');
+	}
+
+</script>
+
+</body>
+</html>
