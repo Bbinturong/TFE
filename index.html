@@ -47,9 +47,9 @@
 
 		<h1 class='title header-title'> Bruno </h1>
 
-		<a id='open-history' class='header-btn btn-history' href="#" title="History">
+		<!--a id='open-history' class='header-btn btn-history' href="#" title="History">
 		<span class='history-icon'></span>	
-		</a>
+		</a-->
 		
 	</header><!-- /header -->
 
@@ -82,7 +82,7 @@
 
 		<p class='shake-baseline'> Secouer pour lancer un appel</p>
 
-		<div id='history' class='history'>
+		<!--div id='history' class='history'>
 
 		<a id='close-history' class='header-btn btn-retour' href="#" >
 		<span class='close-icon'></span>
@@ -107,11 +107,11 @@
 		<p class='history-list-date'> 3h</p>
 		</div>
 			
-		</div>
+		</div-->
 
 	<h2 class='notif-proposition'> <b>Antoine</b> veut parler </br> de <b>crèpes salées</b></h2>	
 
-	<div id='main-btn' class='active notif-open'>
+	<a href='gps.html' id='main-btn' class='active notif-open'>
 
 		<svg class='svg' version="1.1" id="notif-icon"  x="0px" y="0px"	 width="60px" height="60px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
 		<g id='svg-notif'>
@@ -120,7 +120,7 @@
 		</g>
 		</svg>
 
-	</div>		
+	</a>		
 
 	<ul id='notif-list' class='notif-list'>
 		<li class='notif-users_container'>
@@ -144,6 +144,26 @@
 <script type="text/javascript">
 	
     $(document).ready(function(){
+
+
+    navigator.geolocation.getCurrentPosition(createSpiroWithPosition);
+    createSpiroWithTime();
+    var R1;
+    var R2;
+    function createSpiroWithPosition(position) {        
+    
+        R11 = Math.floor(position.coords.latitude);
+        R12 = Math.floor(position.coords.longitude);
+        R1 = R11 + R12;
+    }
+    function createSpiroWithTime(){
+
+        var now = new Date();
+        R2 = now.getHours()+now.getMinutes()+now.getSeconds();
+    }
+    console.log(R2);
+
+    console.log(R1);
 
 
 
@@ -293,7 +313,7 @@
 		//function to call when shake occurs
 		function shakeEventDidOccur () {
 		
-		alert('SHAKING');
+        window.location.href = "gps.html";
 	}
 
 </script>

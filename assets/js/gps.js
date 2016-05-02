@@ -5,10 +5,11 @@ var longUser1;
 var longUser2 = 4.860398769378662;
 var bearing;
 
-navigator.geolocation.watchPosition(getLocationData, error);
+window.navigator.geolocation.watchPosition(getLocationData, error);
 
 function getLocationData(position) {
     
+
     latUser1 = position.coords.latitude;
     longUser1 = position.coords.longitude;	
 
@@ -20,8 +21,9 @@ function getLocationData(position) {
 function error() {
 
     document.getElementById('gpsData').innerHTML = 'Location not supported';
-              		
+    updateSpiro(10, 500);
 }
+              		
 
 function distanceBetweenUsers(latUser1, longUser1, latUser2, longUser2) {
 
@@ -97,7 +99,10 @@ function moveSpiro(bearing, dist) {
 	
 	$( ".second-avatar-GPS" ).css( "margin-left", '-50px' );
 
-	$( ".second-avatar-GPS" ).css( "-webkit-transform", 'translateY(-' + dist/2 +'px)'  );
+	$( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + dist/2 +'px)'  );
+	$( ".second-avatar-GPS" ).css( "-moz-transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + dist/2 +'px)'  );
+  $( ".second-avatar-GPS" ).css( "-o-transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + dist/2 +'px)'  );
+  $( ".second-avatar-GPS" ).css( "transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + dist/2 +'px)'  );
 
 	updateSpiro(bearing, dist);
 }
@@ -120,10 +125,10 @@ function moveSpiro(bearing, dist) {
             if(alpha!=null || beta!=null || gamma!=null)   {  
                  
                 	dataContainerOrientation.innerHTML = 'alpha: ' + alpha + '<br/>beta: ' + beta + '<br />gamma: ' + gamma;
-              		$( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotate(' + alpha + 'deg ) translateY(' + dist/2 +'px)'  );
-              		if (alpha>360) {
-              			alpha =0;
-              		}
+              		$( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotateZ('+ bearing - alpha + 'deg ) translateY(' + dist/2 +'px)'  );
+              		$( ".second-avatar-GPS" ).css( "-moz-transform", 'rotateZ(' + bearing - alpha + 'deg ) translateY(' + dist/2 +'px)'  );
+                  $( ".second-avatar-GPS" ).css( "-o-transform", 'rotateZ(' + bearing - alpha + 'deg ) translateY(' + dist/2 +'px)'  );
+                  $( ".second-avatar-GPS" ).css( "transform", 'rotateZ(' + bearing - alpha + 'deg ) translateY(' + dist/2 +'px)'  );
               		}
 
               }, false);
