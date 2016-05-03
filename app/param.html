@@ -40,16 +40,10 @@
 
 	<main class='main-param'>
 
-	<section>
-		
-		<h2> Profil </h2>
-
-	</section>
 
 	<section>
 		
-		<h2> Actif </h2>
-		<h2> Notification </h2>
+		<h2 class='link-param'> Notification </h2>
 		
 	</section>
 
@@ -76,6 +70,16 @@
 	</footer>
 
 <script type="text/javascript">
+
+
+    $(document).ready(function(){
+
+		$(".link-param").click(function(){
+
+       		$( ".link-param" ).toggleClass( "link-param-selected" );
+
+       	});
+	});
 
 </script>
 

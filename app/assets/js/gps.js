@@ -1,19 +1,22 @@
 
 var latUser1;
-var latUser2 = 50.464265749190176;
+var latUser2 = 50.463186669426605;
 var longUser1;
-var longUser2 = 4.860398769378662;
+var longUser2 = 4.874110221862793;
 var bearing;
+var translateOuterSpiro;
+
 
 window.navigator.geolocation.watchPosition(getLocationData, error);
 
 function getLocationData(position) {
     
 
-    latUser1 = position.coords.latitude;
-    longUser1 = position.coords.longitude;	
 
-    distanceBetweenUsers(latUser1, longUser1, latUser2, longUser2);
+  latUser1 = position.coords.latitude;
+  longUser1 = position.coords.longitude;	
+
+  distanceBetweenUsers(latUser1, longUser1, latUser2, longUser2);
 	console.log(latUser1);
 	console.log(longUser1);
 }
@@ -21,7 +24,7 @@ function getLocationData(position) {
 function error() {
 
     document.getElementById('gpsData').innerHTML = 'Location not supported';
-    updateSpiro(10, 500);
+    updateSpiro(175, 500);
 }
               		
 
@@ -34,15 +37,15 @@ function distanceBetweenUsers(latUser1, longUser1, latUser2, longUser2) {
 	var dist = Math.sin(radlatUser1) * Math.sin(radlatUser2) + Math.cos(radlatUser1) * Math.cos(radlatUser2) * Math.cos(radtheta);
 	dist = Math.acos(dist)
 	dist = dist * 180/Math.PI
-	dist = dist * 60 * 1.1515
-	dist = dist * 1609.344
+	dist = dist * 60 * 1.1515 // en miles
+	dist = dist * 1609.344 // en m
 	dist = Math.floor(dist);
-	console.log(dist);
 
-    document.getElementById("gpsData").innerHTML = dist;
 
-    getBearing(latUser1, longUser1, latUser2, longUser2);
-	moveSpiro(bearing, dist);
+  document.getElementById("gpsData").innerHTML = dist;
+
+  getBearing(latUser1, longUser1, latUser2, longUser2);
+  moveSpiro(bearing, dist);
 
     /*
     // SAME AS BEFORE 
@@ -88,21 +91,23 @@ function getBearing(latUser1, longUser1, latUser2, longUser2){
 function moveSpiro(bearing, dist) {
 
 	
-	var widthMainAvatar = $(".main-avatar-GPS").outerWidth(true);
-	var widthSecondAvatar = $(".second-avatar-GPS").outerWidth(true);
-	var translateOuterSpiro = widthSecondAvatar + widthMainAvatar; 
-	$( ".second-avatar-GPS" ).css( "width", '100px' );
-	$( ".second-avatar-GPS" ).css( "height", '100px' );
+  $( ".second-avatar-GPS" ).css( "width", '100px' );
+  $( ".second-avatar-GPS" ).css( "height", '100px' );
+
+	var widthMainAvatar = $(".main-avatar-GPS").width();
+	var widthSecondAvatar = $(".second-avatar-GPS").width();
+	translateOuterSpiro = widthSecondAvatar/4 + widthMainAvatar/2 + 5;  // /4 car de 200 on passe a 100
 
 
-	$( ".second-avatar-GPS" ).css( "top", 'calc(30% + 15vw)' );
+	$( ".second-avatar-GPS" ).css( "top", 'calc(25% + 15vw)' );
 	
 	$( ".second-avatar-GPS" ).css( "margin-left", '-50px' );
 
-	$( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + dist/2 +'px)'  );
-	$( ".second-avatar-GPS" ).css( "-moz-transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + dist/2 +'px)'  );
-  $( ".second-avatar-GPS" ).css( "-o-transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + dist/2 +'px)'  );
-  $( ".second-avatar-GPS" ).css( "transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + dist/2 +'px)'  );
+
+	$( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + translateOuterSpiro +'px)'  );
+	$( ".second-avatar-GPS" ).css( "-moz-transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + translateOuterSpiro +'px)'  );
+  $( ".second-avatar-GPS" ).css( "-o-transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + translateOuterSpiro +'px)'  );
+  $( ".second-avatar-GPS" ).css( "transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + translateOuterSpiro +'px)'  );
 
 	updateSpiro(bearing, dist);
 }
@@ -112,23 +117,23 @@ function moveSpiro(bearing, dist) {
 
       //Find our div containers in the DOM
       var dataContainerOrientation = document.getElementById('dataContainerOrientation');
-      var dataContainerMotion = document.getElementById('dataContainerMotion');
  
       //Check for support for DeviceOrientation event
       if(window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', function(event) {
                      
-            var alpha = Math.floor(event.alpha);
-           	var beta =  Math.floor(event.beta);
-           	var gamma =  Math.floor(event.gamma);
+            var alpha = Math.round(event.alpha);
+           	var beta =  Math.round(event.beta);
+           	var gamma =  Math.round(event.gamma);
             		
             if(alpha!=null || beta!=null || gamma!=null)   {  
-                 
-                	dataContainerOrientation.innerHTML = 'alpha: ' + alpha + '<br/>beta: ' + beta + '<br />gamma: ' + gamma;
-              		$( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotateZ('+ bearing - alpha + 'deg ) translateY(' + dist/2 +'px)'  );
-              		$( ".second-avatar-GPS" ).css( "-moz-transform", 'rotateZ(' + bearing - alpha + 'deg ) translateY(' + dist/2 +'px)'  );
-                  $( ".second-avatar-GPS" ).css( "-o-transform", 'rotateZ(' + bearing - alpha + 'deg ) translateY(' + dist/2 +'px)'  );
-                  $( ".second-avatar-GPS" ).css( "transform", 'rotateZ(' + bearing - alpha + 'deg ) translateY(' + dist/2 +'px)'  );
+                  
+                  var totalRotation = Math.round(bearing) - alpha;
+                  console.log('bearing'+ Math.floor(bearing));
+                  console.log('alpha'+alpha);
+                  console.log('totalRotation'+totalRotation);
+                  dataContainerOrientation.innerHTML = 'bearing: ' +  Math.round(bearing) + '<br/>totalRotation: ' + totalRotation + '<br />alpha: ' + alpha;
+                  $( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotateZ('+ totalRotation + 'deg ) translateY(-' + translateOuterSpiro +'px)'  );
               		}
 
               }, false);
@@ -150,5 +155,11 @@ function moveSpiro(bearing, dist) {
               });
       }
       */
-    }   
+    } 
+    /*
+    function playSound(){
+
+      var audio = new Audio('assets/sound/beeper.mp3');
+      audio.play();
+    } */
 

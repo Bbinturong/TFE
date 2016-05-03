@@ -388,11 +388,6 @@ main {
 
 /* ----- REGLAGES ----- */
 
-.main-param {
-
-	overflow: scroll;
-}
-
 section {
 
 	width: 100%;
@@ -404,15 +399,15 @@ section {
 section:before {
 
 	content: '';
-	width: 10px;
-	height: 10px;
+	width: 4px;
+	height: 4px;
 	border-radius: 50%;
 	display: block;
 	position: absolute;
 	top: -10px;
 	left: 50%;
-	margin-left: -5px;
-	margin-top: 5px;
+	margin-left: -2px;
+	margin-top: 2px;
 	background-color: #8978bd;
 }
 
@@ -424,6 +419,7 @@ section:first-child:before {
 section h2 {
 
 	font-size: 1em;
+	position: relative;
 }
 
 section img.logo {
@@ -432,6 +428,43 @@ section img.logo {
 	height: auto;
 	display: block;
 	margin: 20px auto;
+}
+
+.link-param::before {
+
+	content: '';
+    position: absolute;
+    width: 100px;
+    height: 4px;
+    background-color:  #8978bd;
+    top: 50%;
+    margin-top: -1px;
+    left: 100%;
+    -webkit-animation: selected-out ease .2s forwards;
+}
+@-webkit-keyframes selected-out {
+
+	from{ left: 50%; margin-left: -50px;}
+	to{ left: 100%; opacity: 0; display: none; }
+}
+
+.link-param-selected::before {
+
+	content: '';
+	display: block;
+    position: absolute;
+    width: 100px;
+    height: 4px;
+    background-color:  #8978bd;
+    top: 50%;
+    margin-top: -1px;
+    -webkit-animation: selected-in ease .2s forwards;
+}	
+
+@-webkit-keyframes selected-in {
+
+	from{ left: 0; }
+	to{ left: 50%; margin-left: -50px; }
 }
 
 /* ----- INTERACTION ----- */
@@ -478,33 +511,76 @@ section img.logo {
 }
 
 
+/* ----- INDEX NO ACTIVE ----- */
+.no-active .btn-baseline {
 
+	position: absolute;
+    display: inline-block;
+    /*
+    width: 200px;
+    margin-left: -100px;
+    left: 50%;
+    */
+    
+    top: 10px;
+    opacity: 0;
+    transition: all .2s;
 
-/* GPS */
+    font-family: 'lato';
+	text-align: center;
+	font-size: .7em;
+	color: rgba(0, 0, 0, 0.4);
+}
+.show-baseline {
+
+    top: -40px !important;
+    opacity: 1 !important;
+    transition: all .2s;
+}
+
+/* ----- GPS ----- */
 
 .main-avatar-GPS{
 
 	opacity: .7;
 	width: 60vw;
 	height: 60vw;
+	max-width: 200px;
+	max-height: 200px;
 	display: block;
 
 	position: absolute;
-	top: 30%;
+	top: 25%;
 	left: 50%;
 	margin-left: -30vw;
 }
 .second-avatar-GPS{
 
-	opacity: .7;
 	width: 60vw;
 	height: 60vw;
 	margin: 0 auto;
 	display: block;
 
 	position: absolute;
-	top: 30%;
+	top: 25%;
 	left: 50%;
 	margin-left: -30vw;
 	transition: all .2s;
+}
+
+.goto {
+
+	display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 20%;
+    text-align: center;
+}
+
+
+
+/* ------ LOADING ------ */
+.loading {
+
+	margin-top: 40%;
 }

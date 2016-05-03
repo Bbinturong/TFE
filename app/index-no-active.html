@@ -111,7 +111,7 @@
 
 	<h2 class='notif-proposition'> <b>Antoine</b> veut parler </br> de <b>crèpes salées</b></h2>	
 
-	<a href='gps.html' id='main-btn' class='active notif-open'>
+	<a href='gps.html' id='main-btn' class='no-active notif-open'>
 
 		<svg class='svg' version="1.1" id="notif-icon"  x="0px" y="0px"	 width="60px" height="60px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
 		<g id='svg-notif'>
@@ -120,22 +120,10 @@
 		</g>
 		</svg>
 
-	</a>		
+        <p class='btn-baseline'> Pas d'appel a proximité</p>  
 
-	<ul id='notif-list' class='notif-list'>
-		<li class='notif-users_container'>
-		<canvas id='notif-users1' class='notif-users'></canvas>
-		<div class='valid-user'></div>
-		</li>
-		<li class='notif-users_container'>
-		<canvas id='notif-users2' class='notif-users'></canvas>
-		<div class='valid-user'></div>
-		</li>
-		<li class='notif-users_container'>
-		<canvas id='notif-users3' class='notif-users'></canvas>
-		<div class='valid-user'></div>
-		</li>
-	</ul>  
+	</a>
+ 
 
     </div>
 
@@ -170,9 +158,10 @@
     // Définis les spirographs
     $('#main-spiro').each(function(){
         $(this).spiro({
-          color : "#8781bd",
+          color : "#4f84dd",
           stroke : 2,
           size : 300,
+          seed: '43-26-11',
           speed : 1
         })
      })
@@ -273,6 +262,20 @@
 
         });
             */  
+
+
+    var active = $( "#main-btn" ).hasClass( "no-active" );
+
+    if (active) {
+
+        $( "#main-btn" ).attr("href", "#");
+    }  
+    $("#main-btn").click(function(){ 
+
+        $( ".btn-baseline" ).addClass("show-baseline");
+        setTimeout( function(){ $( ".btn-baseline" ).removeClass("show-baseline"); }, 1500);
+    });  
+
 
 
         // -----
