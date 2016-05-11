@@ -132,7 +132,7 @@ function moveSpiro(bearing, dist) {
                   console.log('bearing'+ Math.floor(bearing));
                   console.log('alpha'+alpha);
                   console.log('totalRotation'+totalRotation);
-                  dataContainerOrientation.innerHTML = 'bearing: ' +  Math.round(bearing) + '<br/>totalRotation: ' + totalRotation + '<br />alpha: ' + alpha;
+                  //dataContainerOrientation.innerHTML = 'bearing: ' +  Math.round(bearing) + '<br/>totalRotation: ' + totalRotation + '<br />alpha: ' + alpha;
                   $( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotateZ('+ totalRotation + 'deg ) translateY(-' + translateOuterSpiro +'px)'  );
               		}
 
