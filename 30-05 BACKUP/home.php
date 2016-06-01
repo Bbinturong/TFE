@@ -1,3 +1,13 @@
+<?php 
+  
+  session_start();
+  require "db_connect.php";
+  require "connexion.php";
+
+/* CREATE COOKIE 
+setcookie("cookieIp",$_SESSION["ip"],time() + (10 * 365 * 24 * 60 * 60));
+*/
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,167 +49,61 @@
 </head>
 <body>
 
-	<header id="header" class="header main_header">
+	<div id='home-screen'>
+    <header id="header" class="header main_header">
 
-		<a class='header-btn btn-param' href="param.html" title="Parameter">
-		<span class='param-icon'></span>
-		</a>
+        <a class='header-btn btn-param' href="param.html" title="Parameter">
+        <span class='param-icon'></span>
+        </a>
 
-		<h1 class='title header-title'> Bruno </h1>
+        <h1 class='title header-title'> <?php  echo $_SESSION["name"] ?> </h1>
 
-		<!--a id='open-history' class='header-btn btn-history' href="#" title="History">
-		<span class='history-icon'></span>	
-		</a-->
-		
-	</header><!-- /header -->
+        <!--a id='open-history' class='header-btn btn-history' href="#" title="History">
+        <span class='history-icon'></span>  
+        </a-->
+        
+    </header><!-- /header -->
 
-	<main>
+    <main>
 
-        <!--div class='onboarding'>
-            <h2> Bienvenu sur Spiro</h2>
-            <h3> C'est quoi ton nom ?</h3>
+        <div class='home'>
+        <canvas id='spiro' width='300px' height="300px" id="main-spiro" class='main-avatar'>
+            
+        </canvas>
 
-                
-            <input id='userNameInput' type="text" name="User-name" placeholder="Bernard">
-
-        <div id='main-btn' class='active notif-open'>
+        <p class='shake-baseline'> Secouer pour lancer un appel</p>   
+    
+        <a href='gps.html' id='main-btn' class='active notif-open'>
 
         <svg class='svg' version="1.1" id="notif-icon"  x="0px" y="0px"  width="60px" height="60px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
         <g id='svg-notif'>
-            <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-miterlimit="10" points="19.25,36.5 
-        30.749,25 19.25,13.5    "/>
+            <path id='path-1' class='notif-icon_path' fill="none" stroke-width="1" stroke='#FFF' stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M19.661,46.902l16.97-25.582C37.098,20.597,36.79,20,35.943,20h-8.008c-0.844,0-1.422-0.517-1.283-1.376l2.752-17.527"/>
+            <path id='path-2' class='notif-icon_path' fill="none" stroke-width="1" stroke='#FFF'stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M29.404,1L11.411,25.697c-0.514,0.693-0.24,1.33,0.604,1.33h8.861c0.844,0,1.482,0.466,1.418,1.336L19.661,47"/>
         </g>
         </svg>
 
-    </div>
-            
-        </div-->
-
-		<div class='home'>
-		<canvas width='300px' height="300px" id="main-spiro" class='main-avatar'>
-			
-		</canvas>
-
-		<p class='shake-baseline'> Secouer pour lancer un appel</p>
-
-		<!--div id='history' class='history'>
-
-		<a id='close-history' class='header-btn btn-retour' href="#" >
-		<span class='close-icon'></span>
-		</a>
-
-		<h1 class='header-title'> Historique </h1>
-
-		<div class='history-list'>
-		<p class='history-list-proposition'> Appel avec <b>Antoine</b> </br> de <b>crèpes salées</b></p>
-		<p class='history-list-date'> 3h</p>
-		</div>
-		<div class='history-list'>
-		<p class='history-list-proposition'> Appel avec <b>Marguerite</b> </br> de <b>semences artificielles</b></p>
-		<p class='history-list-date'> 1j</p>
-		</div>
-		<div class='history-list'>
-		<p class='history-list-proposition'> Appel avec <b>Antoine</b> </br> de <b>crèpes salées</b></p>
-		<p class='history-list-date'> 3h</p>
-		</div>
-		<div class='history-list'>
-		<p class='history-list-proposition'> Appel avec <b>Antoine</b> </br> de <b>crèpes salées</b></p>
-		<p class='history-list-date'> 3h</p>
-		</div>
-			
-		</div-->
-
-	<h2 class='notif-proposition'> <b>Antoine</b> veut parler </br> de <b>crèpes salées</b></h2>	
-
-	<a href='gps.html' id='main-btn' class='active notif-open'>
-
-		<svg class='svg' version="1.1" id="notif-icon"  x="0px" y="0px"	 width="60px" height="60px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
-		<g id='svg-notif'>
-			<path id='path-1' class='notif-icon_path' fill="none" stroke-width="1" stroke='#FFF' stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M19.661,46.902l16.97-25.582C37.098,20.597,36.79,20,35.943,20h-8.008c-0.844,0-1.422-0.517-1.283-1.376l2.752-17.527"/>
-			<path id='path-2' class='notif-icon_path' fill="none" stroke-width="1" stroke='#FFF'stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M29.404,1L11.411,25.697c-0.514,0.693-0.24,1.33,0.604,1.33h8.861c0.844,0,1.482,0.466,1.418,1.336L19.661,47"/>
-		</g>
-		</svg>
-
-	</a>		
-
-	<ul id='notif-list' class='notif-list'>
-		<li class='notif-users_container'>
-		<canvas id='notif-users1' class='notif-users'></canvas>
-		<div class='valid-user'></div>
-		</li>
-		<li class='notif-users_container'>
-		<canvas id='notif-users2' class='notif-users'></canvas>
-		<div class='valid-user'></div>
-		</li>
-		<li class='notif-users_container'>
-		<canvas id='notif-users3' class='notif-users'></canvas>
-		<div class='valid-user'></div>
-		</li>
-	</ul>  
+    </a>        
 
     </div>
-
-	</main>
+    </main>
+    </div>
 
 <script type="text/javascript">
 	
     $(document).ready(function(){
 
 
-    navigator.geolocation.getCurrentPosition(createSpiroWithPosition);
-    createSpiroWithTime();
-    var R1;
-    var R2;
-    function createSpiroWithPosition(position) {        
-    
-        R11 = Math.floor(position.coords.latitude);
-        R12 = Math.floor(position.coords.longitude);
-        R1 = R11 + R12;
-    }
-    function createSpiroWithTime(){
-
-        var now = new Date();
-        R2 = now.getHours()+now.getMinutes()+now.getSeconds();
-    }
-    console.log(R2);
-
-    console.log(R1);
-
-
-
     // Définis les spirographs
-    $('#main-spiro').each(function(){
+    $('#spiro').each(function(){
         $(this).spiro({          
-          color : "#4f84dd",
+          color : randomColor(),
           stroke : 2,
           size : 300,
-          seed: '43-26-11'
+          speed: 1,
+          seed: '<?php echo $_SESSION['r1']; ?>-<?php echo $_SESSION['r2']; ?>-<?php echo $_SESSION['r3']; ?>'
         })
      })
-    $('#notif-users1').each(function(){
-        $(this).spiro({
-          color : randomColor(),
-          stroke : 1,
-          size : 80,
-          speed : 2
-        })
-     })
-    $('#notif-users2').each(function(){
-        $(this).spiro({
-          color : randomColor(),
-          stroke : 1,
-          size : 80,
-          speed : 2
-        })
-     })
-    $('#notif-users3').each(function(){
-        $(this).spiro({
-          color : randomColor(),
-          stroke : 1,
-          size : 80,
-          speed : 2
-        })
-     })
+    
 
 
 
@@ -314,10 +218,41 @@
 		//function to call when shake occurs
 		function shakeEventDidOccur () {
 		
+        // Permet de préfixer les navigateurs
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        
+        // Si l'API vibrate est supportée, on fait vibrer le téléphone 1/2 seconde
+        if (navigator.vibrate) {
+            navigator.vibrate(800);
+        }
+
+
+        
+        $( "#path-1" ).attr("d", "M19.661,46.902l16.97-25.582C37.098,20.597,36.79,20,35.943,20h-8.008c-0.844,0-1.422-0.517-1.283-1.376l2.752-17.527");
+        $( "#path-2" ).attr("d", "M29.404,1L11.411,25.697c-0.514,0.693-0.24,1.33,0.604,1.33h8.861c0.844,0,1.482,0.466,1.418,1.336L19.661,47");
+        $( "#header" ).css( "display", 'none' );
         window.location.href = "loading.html";
 	}
 
+
+    /* INTRO TO AJAX 
+    var xhttp;
+    if (window.XMLHttpRequest) {
+        xhttp = new XMLHttpRequest();
+        } else {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("home-screen").innerHTML = xhttp.responseText;
+        }
+    };
+    xhttp.open("POST", "form-screen.php", true);
+    xhttp.send();*/
+
 </script>
+
 
 </body>
 </html>

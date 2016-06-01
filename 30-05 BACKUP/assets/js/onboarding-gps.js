@@ -5,6 +5,7 @@ var longUser1;
 var longUser2 = 4.874110221862793;
 var bearing;
 var translateOuterSpiro;
+var dist;
 
 
 window.navigator.geolocation.watchPosition(getLocationData, error);
@@ -15,6 +16,9 @@ function getLocationData(position) {
 
   latUser1 = position.coords.latitude;
   longUser1 = position.coords.longitude;	
+
+  latUser2 = latUser1 + 0.0002;
+  longUser2 = longUser1 + 0.0002;
 
   distanceBetweenUsers(latUser1, longUser1, latUser2, longUser2);
 	console.log(latUser1);
@@ -34,7 +38,7 @@ function distanceBetweenUsers(latUser1, longUser1, latUser2, longUser2) {
 	var radlatUser2 = Math.PI * latUser2/180
 	var theta = longUser1-longUser2
 	var radtheta = Math.PI * theta/180
-	var dist = Math.sin(radlatUser1) * Math.sin(radlatUser2) + Math.cos(radlatUser1) * Math.cos(radlatUser2) * Math.cos(radtheta);
+	dist = Math.sin(radlatUser1) * Math.sin(radlatUser2) + Math.cos(radlatUser1) * Math.cos(radlatUser2) * Math.cos(radtheta);
 	dist = Math.acos(dist)
 	dist = dist * 180/Math.PI
 	dist = dist * 60 * 1.1515 // en miles
@@ -42,7 +46,7 @@ function distanceBetweenUsers(latUser1, longUser1, latUser2, longUser2) {
 	dist = Math.floor(dist);
 
 
-  //document.getElementById("gpsData").innerHTML = dist;
+  document.getElementById("gotoDist").innerHTML = dist;
 
   getBearing(latUser1, longUser1, latUser2, longUser2);
   moveSpiro(bearing, dist);
@@ -96,10 +100,9 @@ function moveSpiro(bearing, dist) {
 
 	var widthMainAvatar = $(".main-avatar-GPS").width();
 	var widthSecondAvatar = $(".second-avatar-GPS").width();
-	translateOuterSpiro = widthSecondAvatar/4 + widthMainAvatar/2 + 5;  // /4 car de 200 on passe a 100
+	translateOuterSpiro = widthSecondAvatar/2 + widthMainAvatar/2 + 5;
 
-
-	$( ".second-avatar-GPS" ).css( "top", 'calc(25% + 15vw)' );
+	$( ".second-avatar-GPS" ).css( "top", 'calc(25% + 30vw - 50px)' );
 	
 	$( ".second-avatar-GPS" ).css( "margin-left", '-50px' );
 
@@ -110,6 +113,9 @@ function moveSpiro(bearing, dist) {
   $( ".second-avatar-GPS" ).css( "transform", 'rotateZ(' + bearing + 'deg ) translateY(-' + translateOuterSpiro +'px)'  );
 
 	updateSpiro(bearing, dist);
+
+
+  distOnboarding(dist);
 }
 
 
@@ -132,13 +138,14 @@ function moveSpiro(bearing, dist) {
                   console.log('bearing'+ Math.floor(bearing));
                   console.log('alpha'+alpha);
                   console.log('totalRotation'+totalRotation);
-                  dataContainerOrientation.innerHTML = 'bearing: ' +  Math.round(bearing) + '<br/>totalRotation: ' + totalRotation + '<br />alpha: ' + alpha;
-                  $( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotateZ('+ totalRotation + 'deg ) translateY(-' + translateOuterSpiro +'px)'  );
+                  //dataContainerOrientation.innerHTML = 'bearing: ' +  Math.round(bearing) + '<br/>totalRotation: ' + totalRotation + '<br />alpha: ' + alpha;
+                  //$( ".second-avatar-GPS" ).css( "-webkit-transform", 'rotateZ('+ totalRotation + 'deg ) translateY(-' + translateOuterSpiro +'px)'  );
               		}
 
               }, false);
       } 	
  		
+ 	  /*
       // Check for support for DeviceMotion events
       if(window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', function(event) {
@@ -153,8 +160,17 @@ function moveSpiro(bearing, dist) {
                 dataContainerMotion.innerHTML = html;                  
               });
       }
+      */
     } 
 
+    function distOnboarding(dist) {
+
+        for (var i = dist; i < 0; i--) {
+          
+          console.log('tets');
+          document.getElementById("gotoDist").innerHTML = dist;
+        }
+    }   
     /*
     function playSound(){
 

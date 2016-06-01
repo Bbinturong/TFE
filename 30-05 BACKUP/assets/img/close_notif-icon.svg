@@ -4,8 +4,11 @@
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="48px" height="48px" viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
 <g>
-	
-		<polyline fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-		4.75,22.396 19.396,36.833 43.25,11.167 	"/>
+	<path fill="#FFFFFF" d="M32,33c-0.256,0-0.512-0.098-0.707-0.293l-16-16c-0.391-0.391-0.391-1.023,0-1.414s1.023-0.391,1.414,0
+		l16,16c0.391,0.391,0.391,1.023,0,1.414C32.512,32.902,32.256,33,32,33z"/>
+</g>
+<g>
+	<path fill="#FFFFFF" d="M16,33c-0.256,0-0.512-0.098-0.707-0.293c-0.391-0.391-0.391-1.023,0-1.414l16-16
+		c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414l-16,16C16.512,32.902,16.256,33,16,33z"/>
 </g>
 </svg>

@@ -1,0 +1,92 @@
+<?php 
+  
+  session_start();
+  require "db_connect.php";
+
+  /* Checking Honeypot */
+  if ($_POST["adress"] != "") {
+    die("Inscription réussie !");
+ }
+ ?>
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title> - Spiro - </title>
+	<meta charset="UTF-8" />
+
+	<!-- META -->
+	<meta name="description" content="Spiro - Find someone and talk"/>
+    <meta name="keywords" content="spiro, talk, meet, meeting, talking, app, mobile, mobile app, ux, rencontre, spirograph, parler, discuter"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mattelet Bruno">
+
+	<meta property="og:title" content="Sprio"/>
+	<meta property="og:description" content="Find someone and talk"/>
+	<meta property="og:email" content="bruno.mattelet@gmail.com"/>
+	<meta property="og:image" content="assets/img/favicon.png"/>
+
+	<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+
+	<!-- JQUERY -->
+    <script type="text/javascript" src="assets/js/jquery-1.11.3.js"></script>
+    <!-- BONSAI -->
+    <script type="text/javascript" src="assets/js/bonsai-0.4.1.min.js"></script>
+    <!-- VELOCITY -->
+    <script type="text/javascript" src="assets/js/velocity.min.js"></script>
+	<!-- RANDOMCOLOR -->
+	<script type="text/javascript" src="assets/js/randomcolor.js"></script>	
+	<!-- SHAKE -->
+	<script type="text/javascript" src="assets/js/shake.js"></script>
+
+	<!-- SPIROGRAPH -->
+    <script type="text/javascript" src="assets/js/spirograph.js"></script>
+    
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/real-style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+
+    <div id='starting-screen'>
+    <h1 class='logo'> Spiro </h1>
+    <svg class='logo-svg' version="1.1" id="notif-icon"  x="0px" y="0px"  width="60px" height="60px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
+        <g id='svg-notif'>
+            <path id='path-1' class='notif-icon_path' fill="none" stroke-width="2" stroke='#8781bd' stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M19.661,46.902l16.97-25.582C37.098,20.597,36.79,20,35.943,20h-8.008c-0.844,0-1.422-0.517-1.283-1.376l2.752-17.527"/>
+            <path id='path-2' class='notif-icon_path' fill="none" stroke-width="2" stroke='#8781bd'stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M29.404,1L11.411,25.697c-0.514,0.693-0.24,1.33,0.604,1.33h8.861c0.844,0,1.482,0.466,1.418,1.336L19.661,47"/>
+        </g>
+    </svg>
+    </div>
+
+    <div id='form-screen'>
+    </div>
+    <div id='home-screen'>
+    </div>
+
+	
+
+<script type="text/javascript">
+	
+    $(document).ready(function(){
+    
+
+        setTimeout(function(){
+                $('#starting-screen').css('display', 'none');
+                $("#form-screen").load("form-screen.html #form");
+                //$("#home-screen").load("index.html #home-screen > *");
+
+        },3000);
+
+        var test = $('#form').serialize();
+        console.log(test);
+
+    });
+    // DOCUMENT READY END 
+
+
+</script>
+
+</body>
+</html>

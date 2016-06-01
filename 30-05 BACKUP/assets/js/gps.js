@@ -42,7 +42,7 @@ function distanceBetweenUsers(latUser1, longUser1, latUser2, longUser2) {
 	dist = Math.floor(dist);
 
 
-  //document.getElementById("gpsData").innerHTML = dist;
+  document.getElementById("gpsData").innerHTML = dist;
 
   getBearing(latUser1, longUser1, latUser2, longUser2);
   moveSpiro(bearing, dist);

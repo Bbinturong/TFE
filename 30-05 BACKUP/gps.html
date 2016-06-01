@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title> - Spiro - </title>
+	<meta charset="UTF-8" />
+
+	<!-- META -->
+	<meta name="description" content="Spiro - Find someone and talk"/>
+    <meta name="keywords" content="spiro, talk, meet, meeting, talking, app, mobile, mobile app, ux, rencontre, spirograph, parler, discuter"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mattelet Bruno">
+
+	<meta property="og:title" content="Sprio"/>
+	<meta property="og:description" content="Find someone and talk"/>
+	<meta property="og:email" content="bruno.mattelet@gmail.com"/>
+	<meta property="og:image" content="assets/img/favicon.png"/>
+
+	<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+
+	<!-- JQUERY -->
+    <script type="text/javascript" src="assets/js/jquery-1.11.3.js"></script>
+    <!-- BONSAI -->
+    <script type="text/javascript" src="assets/js/bonsai-0.4.1.min.js"></script>
+    <!-- VELOCITY -->
+    <script type="text/javascript" src="assets/js/velocity.min.js"></script>
+	<!-- RANDOMCOLOR -->
+	<script type="text/javascript" src="assets/js/randomcolor.js"></script>	
+	<!-- COMPASS -->
+	<script type="text/javascript" src="assets/js/compass.js"></script>
+
+	<!-- SPIROGRAPH -->
+    <script type="text/javascript" src="assets/js/spirograph.js"></script>
+    <!-- GPS -->
+    <script type="text/javascript" src="assets/js/gps.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+		
+		<canvas id="main-spiro" class='main-avatar-GPS'></canvas>
+
+    <canvas id='notif-users1' class='second-avatar-GPS'></canvas>
+
+
+	<a href='index-no-active.html' id='main-btn' class='active notif-open'>
+
+		<svg class='svg' version="1.1" id="notif-icon"  x="0px" y="0px"	 width="60px" height="60px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
+		<g id='svg-notif'>
+			<path id='path-1' class='notif-icon_path' fill="none" stroke-width="1" stroke='#8781bd' stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M13,35l11-11l0,0l0,0l0,0l11-11"/>
+			<path id='path-2' class='notif-icon_path' fill="none" stroke-width="1" stroke='#8781bd'stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M13,13l11,11l0,0l0,0l0,0l11,11"/>
+		</g>
+		</svg>
+
+
+	</a>	
+
+    <!--div id="dataContainerOrientation">
+      No device orientation data
+    </div-->
+    <!--div id="compass">
+      No device motion data
+    </div-->	
+        
+    <h2 class="goto"> <span id='gpsData'></span> m vers Antoine</h2> 
+
+<script type="text/javascript">
+	
+    $(document).ready(function(){
+
+    	// Définis les spirographs
+    $('#main-spiro').each(function(){
+        $(this).spiro({
+          color : "#4f84dd",
+          stroke : 2,
+          size : 200,
+          seed: '43-26-11',
+          speed : 1
+        })
+     })
+    $('#notif-users1').each(function(){
+        $(this).spiro({
+          color : randomColor(),
+          stroke : 1,
+          size : 200,
+          speed : 2
+        })
+     })
+    $('#notif-users2').each(function(){
+        $(this).spiro({
+          color : randomColor(),
+          stroke : 1,
+          size : 80,
+          speed : 2
+        })
+     })
+    $('#notif-users3').each(function(){
+        $(this).spiro({
+          color : randomColor(),
+          stroke : 1,
+          size : 80,
+          speed : 2
+        })
+     })
+
+
+
+    $( "#main-btn" ).css( "background-color", 'transparent' );       
+
+    
+    
+  
+
+});
+
+
+</script>
+
+</body>
+</html>

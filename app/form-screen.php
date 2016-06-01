@@ -1,0 +1,18 @@
+<div id='form'>
+    <h2> Salut, </br> C'est quoi ton nom ?</h2>
+      <form method="post" action="">
+
+      <span class='input-style'>
+        <input class='form-input' type="text" name="name" value="" placeholder="Pierre">
+      </span>
+
+  <button class='form-btn'>
+    <svg version="1.1" id="Calque_1" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 48 48">
+    <g>
+      <polyline fill="none" stroke="#8781bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="4.75,22.396 19.396,36.833 43.25,11.167"/>
+    </g>
+    </svg>
+  </button>
+
+</form>
+</div>

@@ -136,7 +136,8 @@
             var h;
             if (this.r2<this.r1) {
               h = ((this.size/2)-this.settings.stroke)/(this.r1-this.r2+this.r3);
-            } else {
+            }
+            else {
               h = ((this.size/2)-this.settings.stroke)/(this.r2-this.r1+this.r3);
             }
 

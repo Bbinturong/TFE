@@ -8,7 +8,7 @@
     				size : 200,
     				seed : null,
     				color: '#000000',
-    				speed : 2
+    				speed : 1
     			};
 
     		// The actual plugin constructor
@@ -113,6 +113,24 @@
         		}
         		this.ctx.stroke();
         	},
+          lineToReturn: function(n){
+            this.ctx.beginPath();
+            this.ctx.lineWidth = this.settings.stroke;
+            if (!this.lineSpec) this.ctx.strokeStyle = "#FFF";
+           
+            console.log(this.theta);
+            for (var i=0; i<=n; i++) {
+              if (i>0) {
+                this.theta-=0.01;
+              }
+
+              this.x = Math.cos(this.theta)*(this.r2-this.r1)+this.r3*Math.cos(this.theta*(1-this.r1/this.r2));
+              this.y = Math.sin(this.theta)*(this.r2-this.r1)+this.r3*Math.sin(this.theta*(1-this.r1/this.r2));
+              if (i==0) this.ctx.moveTo(this.x,this.y);
+              else this.ctx.lineTo(this.x,this.y);
+            }
+            this.ctx.stroke();
+          },
 
 
           spiro : function(){
@@ -136,7 +154,8 @@
             var h;
             if (this.r2<this.r1) {
               h = ((this.size/2)-this.settings.stroke)/(this.r1-this.r2+this.r3);
-            } else {
+            }
+            else {
               h = ((this.size/2)-this.settings.stroke)/(this.r2-this.r1+this.r3);
             }
 
@@ -150,18 +169,9 @@
             if (this.loopy) clearTimeout(this.loopy);
             this.loopy=setInterval(function(){
               if(this.view != 1 || this.settings.speed==0) return;
-              for (var i=0; i<[0,10,200,500][this.settings.speed]; i++) {
+              for (var i=0; i<[0,10,200][this.settings.speed]; i++) {
                 if (this.theta/Math.PI/2>this.max) break;
                 this.lineTo(10);
-              }
-
-              if (this.theta/(Math.PI*2)>this.max) {
-                clearInterval(this.loopy);
-
-                /* MAKE THING APPEAR */
-                $( "#header" ).addClass( "appear" );
-                $( "main" ).addClass( "appear" );
-                
               }
             }.bind(this),30);
           }
